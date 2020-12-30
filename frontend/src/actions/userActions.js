@@ -11,6 +11,7 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_REQUEST,
 } from "../constants/userConstants";
+import { server_url } from "../constants/server";
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -25,7 +26,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/users/login",
+      `${server_url}/api/users/login`,
       { email, password },
       config
     );
@@ -67,7 +68,7 @@ export const register = (name, email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      "/api/users",
+      `${server_url}/api/users`,
       { name, email, password },
       config
     );
@@ -111,7 +112,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/users/${id}`, config);
+    const { data } = await axios.get(`${server_url}/api/users/${id}`, config);
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
